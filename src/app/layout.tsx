@@ -4,6 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
 
+import { QueryProvider }
+  from '@/providers/query-provider';
+
+import { ToastContainer }
+  from 'react-toastify';
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -29,7 +35,13 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <QueryProvider>
+          {children}
+
+          <ToastContainer />
+        </QueryProvider>
+      </body>
     </html>
   );
 }
