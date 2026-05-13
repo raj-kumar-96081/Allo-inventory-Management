@@ -25,6 +25,10 @@ import {
     reservationExpiryQueue,
 } from '@/infrastructure/queues/reservation-expiry.queue';
 
+import {
+    deleteCache,
+} from '@/infrastructure/redis/cache';
+
 
 export class ReservationService {
 
@@ -118,6 +122,12 @@ export class ReservationService {
                             delay: 5000,
                         },
                     },
+                );
+
+                
+
+                await deleteCache(
+                    'inventory:products',
                 );
 
                 await tx.inventoryLedger.create({
