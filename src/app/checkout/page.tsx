@@ -80,12 +80,23 @@ export default function CheckoutPage() {
 
             router.push('/');
 
-        } catch (error: any) {
+        } catch (error: unknown) {
 
-            toast.error(
-                error.response?.data?.error?.message ??
-                'Confirmation failed',
-            );
+            console.log(error);
+
+            if (error instanceof Error) {
+
+                toast.error(
+                    error.message,
+                );
+
+            } else {
+
+                toast.error(
+                    'Confirmation failed',
+                );
+
+            }
 
         } finally {
 
@@ -116,12 +127,23 @@ export default function CheckoutPage() {
 
             router.push('/');
 
-        } catch (error: any) {
+        } catch (error: unknown) {
 
-            toast.error(
-                error.response?.data?.error?.message ??
-                'Release failed',
-            );
+            console.log(error);
+
+            if (error instanceof Error) {
+
+                toast.error(
+                    error.message,
+                );
+
+            } else {
+
+                toast.error(
+                    'Reservation failed',
+                );
+
+            }
 
         } finally {
 

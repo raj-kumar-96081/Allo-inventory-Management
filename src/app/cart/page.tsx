@@ -104,13 +104,25 @@ export default function CartPage() {
 
             router.push('/checkout');
 
-        } catch (error: any) {
+        } catch (error: unknown) {
+
             console.log(error);
 
-            toast.error(
-                error.response?.data?.error?.message ??
-                'Reservation failed',
-            );
+            if (error instanceof Error) {
+
+                toast.error(
+                    error.message,
+                );
+
+            } else {
+
+                toast.error(
+                    'Reservation failed',
+                );
+
+            }
+
+
 
         } finally {
 

@@ -12,7 +12,33 @@ import {
   ProductSkeleton,
 } from '@/components/ui/product-skeleton';
 import { useRouter }
-    from 'next/navigation';
+  from 'next/navigation';
+
+interface Inventory {
+  warehouseId: string;
+
+  warehouseName: string;
+
+  availableQty: number;
+
+  reservedQty: number;
+
+  sellableQty: number;
+}
+
+interface Product {
+  id: string;
+
+  sku: string;
+
+  name: string;
+
+  description?: string;
+
+  imageUrl?: string;
+
+  inventory: Inventory[];
+}
 
 export default function HomePage() {
 
@@ -76,7 +102,7 @@ export default function HomePage() {
 
         {
           data?.map(
-            (product: any) => (
+            (product: Product) => (
 
               <div
                 key={product.id}

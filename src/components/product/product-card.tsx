@@ -150,12 +150,23 @@ export function ProductCard({
 
             router.push('/checkout');
 
-        } catch (error: any) {
+        } catch (error: unknown) {
 
-            toast.error(
-                error.response?.data?.error?.message ??
-                'Reservation failed',
-            );
+            console.log(error);
+
+            if (error instanceof Error) {
+
+                toast.error(
+                    error.message,
+                );
+
+            } else {
+
+                toast.error(
+                    'Reservation failed',
+                );
+
+            }
 
         } finally {
 
