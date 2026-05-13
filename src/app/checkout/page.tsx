@@ -23,10 +23,6 @@ import {
 } from '@/stores/reservation.store';
 
 
-// import{
-
-// }
-
 export default function CheckoutPage() {
 
     const router = useRouter();
@@ -77,14 +73,14 @@ export default function CheckoutPage() {
             );
 
             toast.success(
-                'Purchase confirmed',
+                'Reservation confirmed',
             );
 
             clearReservation();
 
             router.push('/');
 
-        } catch (error: unknown) {
+        } catch (error: any) {
 
             toast.error(
                 error.response?.data?.error?.message ??
@@ -120,7 +116,7 @@ export default function CheckoutPage() {
 
             router.push('/');
 
-        } catch (error: unknown) {
+        } catch (error: any) {
 
             toast.error(
                 error.response?.data?.error?.message ??
@@ -142,6 +138,13 @@ export default function CheckoutPage() {
                 <div className="col-md-6">
 
                     <div className="card shadow">
+
+                        <button
+                            className="btn btn-secondary w-20"
+                            onClick={() => router.push('/')}
+                        >
+                            Back
+                        </button>
 
                         <div className="card-body">
 

@@ -136,7 +136,7 @@ export function ProductCard({
                     productId: product.id,
                     warehouseId,
                     quantity: 1,
-                    
+
                 });
 
             setReservation(
@@ -145,12 +145,12 @@ export function ProductCard({
             );
 
             toast.success(
-                'Purchase created',
+                'Reservation created',
             );
 
             router.push('/checkout');
 
-        } catch (error: unknown) {
+        } catch (error: any) {
 
             toast.error(
                 error.response?.data?.error?.message ??
@@ -168,24 +168,21 @@ export function ProductCard({
 
     return (
         <>
-            <div>
-                <button
-                    className="btn btn-secondary"
-                    onClick={() => router.push('/cart')}
-                >
-                    Go to Cart
-                </button>
-            </div>
+
             <div
                 className="
         card
         shadow-sm
         h-100
+        rounded-4
+  overflow-hidden
+    product-card
+
       "
             >
 
                 <img
-                    src="https://placehold.co/600x400"
+                    src="mix.avif"
 
                     className="card-img-top"
 
@@ -214,6 +211,7 @@ export function ProductCard({
                         )
                     }
 
+
                     <hr />
 
                     {
@@ -232,6 +230,21 @@ export function ProductCard({
                   mb-3
                 "
                                 >
+                                    <span
+                                        className={`
+                      badge
+                      ${inventory.sellableQty > 0
+                                                ? 'bg-success'
+                                                : 'bg-danger'
+                                            }
+                    `}
+                                    >
+                                        {
+                                            inventory.sellableQty > 0
+                                                ? 'In Stock'
+                                                : 'Out of Stock'
+                                        }
+                                    </span>
 
                                     <div className="mb-2">
 
@@ -243,12 +256,30 @@ export function ProductCard({
 
                                     </div>
 
+                                    <div>
+                                        Reserved:
+                                        {' '}
+                                        {
+                                            inventory.reservedQty
+                                        }
+                                    </div>
+
+                                    <div >
+                                        Sellable:
+                                        {' '}
+                                        <strong>
+                                            {
+                                                inventory.sellableQty
+                                            }
+                                        </strong>
+                                    </div>
+
                                     <div className="mb-2">
 
                                         Available:
                                         {' '}
                                         {
-                                            inventory.sellableQty
+                                            inventory.availableQty
                                         }
 
                                     </div>

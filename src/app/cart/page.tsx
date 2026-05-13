@@ -99,17 +99,17 @@ export default function CartPage() {
             );
 
             toast.success(
-                'Purchase created',
+                'Reservation created',
             );
 
             router.push('/checkout');
 
-            } catch (error: unknown) {
+        } catch (error: any) {
             console.log(error);
 
             toast.error(
                 error.response?.data?.error?.message ??
-                'Purchase failed',
+                'Reservation failed',
             );
 
         } finally {
@@ -125,16 +125,16 @@ export default function CartPage() {
     return (
         <>
             <div className="min-h-full flex flex-col">
-                <div>
-                    <button
-                        className="btn btn-secondary"
-                        onClick={() => router.push('/')}
-                    >
-                        Continue Shopping
-                    </button>
-                </div>
-                <div className="container py-5">
 
+                <div className="container py-5">
+                    <div>
+                        <button
+                            className="btn btn-secondary"
+                            onClick={() => router.push('/')}
+                        >
+                            Continue Shopping
+                        </button>
+                    </div>
                     <h1 className="mb-4">
                         Shopping Cart
                     </h1>

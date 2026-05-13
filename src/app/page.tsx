@@ -11,13 +11,18 @@ import {
 import {
   ProductSkeleton,
 } from '@/components/ui/product-skeleton';
+import { useRouter }
+    from 'next/navigation';
 
 export default function HomePage() {
+
+  const router = useRouter();
 
   const {
     data,
     isLoading,
   } = useProducts();
+
 
   if (isLoading) {
 
@@ -54,6 +59,15 @@ export default function HomePage() {
   return (
     <div className="container py-5">
 
+      <div>
+        <button
+          className="btn btn-secondary"
+          onClick={() => router.push('/cart')}
+        >
+          Go to Cart
+        </button>
+      </div>
+
       <h1 className="mb-4">
         Products
       </h1>
@@ -62,7 +76,7 @@ export default function HomePage() {
 
         {
           data?.map(
-            (product: unknown) => (
+            (product: any) => (
 
               <div
                 key={product.id}
