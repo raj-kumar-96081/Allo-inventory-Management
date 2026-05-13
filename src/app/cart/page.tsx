@@ -41,14 +41,11 @@ interface Product {
 
     inventory: Inventory[];
 }
+// interface Props {
+//     product: Product;
+// }
 
-interface Props {
-    product: Product;
-}
-
-export default function CartPage({
-    product,
-}: Props) {
+export default function CartPage() {
 
     const router = useRouter();
 
@@ -107,8 +104,7 @@ export default function CartPage({
 
             router.push('/checkout');
 
-        } catch (error: any) {
-
+            } catch (error: unknown) {
             console.log(error);
 
             toast.error(

@@ -84,7 +84,7 @@ export default function CheckoutPage() {
 
             router.push('/');
 
-        } catch (error: any) {
+        } catch (error: unknown) {
 
             toast.error(
                 error.response?.data?.error?.message ??
@@ -120,7 +120,7 @@ export default function CheckoutPage() {
 
             router.push('/');
 
-        } catch (error: any) {
+        } catch (error: unknown) {
 
             toast.error(
                 error.response?.data?.error?.message ??

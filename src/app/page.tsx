@@ -62,7 +62,7 @@ export default function HomePage() {
 
         {
           data?.map(
-            (product: any) => (
+            (product: unknown) => (
 
               <div
                 key={product.id}

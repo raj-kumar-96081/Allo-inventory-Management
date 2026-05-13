@@ -150,7 +150,7 @@ export function ProductCard({
 
             router.push('/checkout');
 
-        } catch (error: any) {
+        } catch (error: unknown) {
 
             toast.error(
                 error.response?.data?.error?.message ??
