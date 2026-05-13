@@ -1,5 +1,10 @@
 import { ProductResponseDto } from '../dto/product/product-response.dto';
 
+import {
+  getCache,
+  setCache,
+} from '@/infrastructure/redis/cache';
+
 import { PrismaProductRepository }
   from '@/infrastructure/repositories/prisma-product.repository';
 
@@ -7,15 +12,27 @@ export class ProductService {
   constructor(
     private readonly productRepository =
       new PrismaProductRepository(),
-  ) {}
+  ) { }
 
   async getProducts():
     Promise<ProductResponseDto[]> {
 
+    const cacheKey =
+      'inventory:products';
+
+    const cachedProducts =
+      await getCache<ProductResponseDto[]>(
+        cacheKey,
+      );
+
+    if (cachedProducts) {
+      return cachedProducts;
+    }
+
     const products =
       await this.productRepository.findAll();
 
-    return products.map((product) => ({
+    const transformedProducts = products.map((product) => ({
       id: product.id,
       sku: product.sku,
       name: product.name,
@@ -40,5 +57,13 @@ export class ProductService {
             inventory.reservedQty,
         })),
     }));
+
+    await setCache(
+      cacheKey,
+      transformedProducts,
+      60,
+    );
+
+    return transformedProducts;
   }
 }

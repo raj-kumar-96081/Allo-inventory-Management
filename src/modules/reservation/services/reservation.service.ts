@@ -21,6 +21,10 @@ import { RESERVATION_DURATION_MINUTES }
 
 import { InventoryModel } from '@/generated/prisma/models/Inventory';
 
+import {
+    reservationExpiryQueue,
+} from '@/infrastructure/queues/reservation-expiry.queue';
+
 
 export class ReservationService {
 
@@ -90,6 +94,31 @@ export class ReservationService {
                             expiresAt,
                         },
                     });
+
+                await reservationExpiryQueue.add(
+                    'expire-reservation',
+
+                    {
+                        reservationId:
+                            reservation.id,
+                    },
+
+                    {
+                        delay:
+                            RESERVATION_DURATION_MINUTES *
+                            60 *
+                            1000,
+
+                        removeOnComplete: true,
+
+                        attempts: 3,
+
+                        backoff: {
+                            type: 'exponential',
+                            delay: 5000,
+                        },
+                    },
+                );
 
                 await tx.inventoryLedger.create({
                     data: {
