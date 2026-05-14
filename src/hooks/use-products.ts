@@ -14,6 +14,8 @@ export function useProducts() {
 
     queryFn: getProducts,
 
-    refetchInterval: 5000,
+    // refetchInterval: 5000,
+
+    staleTime: 1000 * 60,
   });
 }

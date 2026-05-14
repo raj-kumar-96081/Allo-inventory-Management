@@ -6,6 +6,7 @@ import { useCartStore } from '@/stores/cart.store';
 import { createReservation } from '@/services/reservation.service';
 import { useReservationStore } from '@/stores/reservation.store';
 import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface Inventory {
     warehouseId: string;
@@ -29,6 +30,7 @@ interface Props {
 
 export function ProductCard({ product }: Props) {
     const router = useRouter();
+    const queryClient = useQueryClient();
     const addItem = useCartStore((state) => state.addItem);
     const setReservation = useReservationStore((state) => state.setReservation);
     const [loadingWarehouseId, setLoadingWarehouseId] = useState<string | null>(null);
@@ -55,6 +57,9 @@ export function ProductCard({ product }: Props) {
             });
 
             setReservation(reservation.id, reservation.expiresAt);
+            queryClient.invalidateQueries({
+                queryKey: ['products'],
+            });
             toast.success('Reservation created');
             router.push('/checkout');
         } catch (error: unknown) {

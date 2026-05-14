@@ -118,6 +118,12 @@ const worker = new Worker(
   {
     connection:
       bullmqConnection,
+
+    concurrency: 1,
+
+    drainDelay: 30,
+
+    lockDuration: 60000,
   },
 );
 

@@ -11,5 +11,6 @@ export const reservationExpiryQueue =
         {
             connection:
                 bullmqConnection,
+
         },
     );

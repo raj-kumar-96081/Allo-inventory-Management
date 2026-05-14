@@ -6,6 +6,8 @@ import { useReservationStore } from '@/stores/reservation.store';
 import { createReservation } from '@/services/reservation.service';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { useQueryClient } from '@tanstack/react-query';
+
 
 interface Inventory {
     warehouseId: string;
@@ -25,6 +27,7 @@ interface Product {
 
 export default function CartPage() {
     const router = useRouter();
+    const queryClient = useQueryClient();
     const { items, removeItem, increaseQuantity, decreaseQuantity } = useCartStore();
     const inventory = items[0];
 
@@ -41,6 +44,9 @@ export default function CartPage() {
             });
 
             setReservation(reservation.id, reservation.expiresAt);
+            queryClient.invalidateQueries({
+                queryKey: ['products'],
+            });
             toast.success('Reservation created');
             router.push('/checkout');
         } catch (error: unknown) {
@@ -67,7 +73,7 @@ export default function CartPage() {
                             Continue Shopping
                         </button>
                     </div>
-                    
+
                     <h1 className="mb-4">Shopping Cart</h1>
 
                     {items.length === 0 && (
