@@ -207,7 +207,7 @@ export default function CheckoutPage() {
                                     {
                                         loading
                                             ? 'Processing...'
-                                            : 'Confirm Purchase'
+                                            : 'Confirm Reservation'
                                     }
                                 </button>
 
@@ -223,7 +223,7 @@ export default function CheckoutPage() {
                                         handleRelease
                                     }
                                 >
-                                    Cancel Purchase
+                                    Cancel Reservation
                                 </button>
 
                             </div>
