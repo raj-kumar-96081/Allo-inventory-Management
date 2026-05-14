@@ -121,9 +121,11 @@ const worker = new Worker(
 
     concurrency: 1,
 
-    drainDelay: 30,
+    drainDelay: 300,
 
-    lockDuration: 60000,
+    lockDuration: 300000,
+
+    stalledInterval: 300000,
   },
 );
 
