@@ -123,9 +123,9 @@ const worker = new Worker(
 
     drainDelay: 3000,
 
-    lockDuration: 3000000,
+    lockDuration: 300000,
 
-    stalledInterval: 3000000,
+    stalledInterval: 300000,
   },
 );
 
