@@ -1,4 +1,4 @@
-# Allo Commerce
+# Allo Inventory Management
 
 A distributed inventory reservation system inspired by Amazon/Flipkart checkout architecture.
 
