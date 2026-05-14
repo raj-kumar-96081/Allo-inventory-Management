@@ -1,8 +1,6 @@
-// import { PrismaClient } from '@prisma/client';
-// import { PrismaClient } from '@/generated/prisma';
+
 import 'dotenv/config';
 import { PrismaClient } from '../../generated/prisma/client';
-import { withAccelerate } from '@prisma/extension-accelerate';
 
 const accelerateUrl = process.env.PRISMA_ACCELERATE_URL;
 if (!accelerateUrl) throw new Error('Missing PRISMA_ACCELERATE_URL');
