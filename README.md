@@ -168,21 +168,7 @@ Inventory updates currently use polling for simplicity.
 With more time:
 - WebSockets or SSE would be implemented for real-time updates.
 
----
-
-## 2. Simulated Payment Gateway
-
-Payment flow is currently mocked.
-
-With more time:
-- Stripe or Razorpay integration
-- webhook handling
-- payment retries
-would be added.
-
----
-
-## 3. Next.js Route Handlers for APIs
+## 2. Next.js Route Handlers for APIs
 
 Backend APIs are implemented inside Next.js for faster development and simpler deployment.
 
@@ -191,7 +177,7 @@ With more time:
 
 ---
 
-## 4. No Authentication
+## 3. No Authentication
 
 Authentication was intentionally skipped to focus on:
 - inventory consistency
