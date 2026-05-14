@@ -1,5 +1,20 @@
+// import Redis from 'ioredis';
+
+// export const redis = new Redis(
+//     process.env.REDIS_URL!,
+// );
+
 import Redis from 'ioredis';
 
-export const redis = new Redis(
-    process.env.REDIS_URL!,
-);
+if (!process.env.REDIS_URL) {
+
+  throw new Error(
+    'Missing REDIS_URL',
+  );
+
+}
+
+export const redis =
+  new Redis(
+    process.env.REDIS_URL,
+  );
