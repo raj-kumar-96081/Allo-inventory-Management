@@ -24,6 +24,6 @@ export const redis =
 
             lazyConnect: true,
 
-            keepAlive: 30000,
+            keepAlive: 3000,
         }
     );
